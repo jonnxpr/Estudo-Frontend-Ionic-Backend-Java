@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpServiceProvider {
   public items: any;
+  public infoLogin: any;
 
   constructor(public http: HttpClient) {
   }

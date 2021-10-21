@@ -11,6 +11,19 @@ public class CRUDService {
         return pessoa.getJson();
     }
 
+    public JsonObject login(String cpf) {
+        JsonObject js = new JsonObject();
+        if (cpf.equals("07310124618")) {
+            js.put("logar", true);
+            js.put("cpf", cpf);
+        } else {
+            js.put("logar", false);
+            js.put("cpf", null);
+        }
+
+        return js;
+    }
+
     public int greeting(int n1, int n2) {
         return n1 + n2;
     }
