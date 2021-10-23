@@ -4,5 +4,7 @@
 			"path": "getting-started"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
 }

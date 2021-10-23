@@ -32,7 +32,7 @@ export class HomePage extends HttpServiceProvider {
       console.log(this.items);
     },
       reject => {
-        alert("escreve ai arrombado!");
+        alert("escreve ai!");
       });
   }
 }
