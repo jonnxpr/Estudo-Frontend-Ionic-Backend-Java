@@ -16,6 +16,7 @@ export class HomePage extends HttpServiceProvider {
   constructor(public navCtrl: NavController, public http: HttpClient) {
     super(http);
     //this.getAll();
+    this.getData();
   }
 
   mudarPagina() {
@@ -25,13 +26,14 @@ export class HomePage extends HttpServiceProvider {
     });
   }
 
-  logar() {
-    let data = this.http.get('http://localhost:8080/hello/login/' + this.varCPF);
+  getData() {
+    let data = this.http.get('http://localhost:8080/persons');
     data.subscribe(result => {
       this.items = result;
       console.log(this.items);
     },
       reject => {
+        console.log("Deu ruim!");
         alert("escreve ai!");
       });
   }

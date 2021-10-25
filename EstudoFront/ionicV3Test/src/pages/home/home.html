@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list inset>
+  <!--<ion-list inset>
 
     <ion-list>
 
@@ -21,14 +21,15 @@
       <button ion-button color="primary" (click)="logar()" block>Logar</button>
     </div>
 
-  </ion-list>
-  <!--<ion-list>
+  </ion-list>-->
+  <ion-list>
     <ion-item *ngFor="let item of items">
       Nome: {{item.nome}} <br>
       CPF: {{item.cpf}} <br>
+      RG: {{item.rg}} <br>
       Idade: {{item.idade}}
     </ion-item>
-  </ion-list>-->
+  </ion-list>
 
   <button ion-button (click)=" mudarPagina()">Button</button>
 </ion-content>
