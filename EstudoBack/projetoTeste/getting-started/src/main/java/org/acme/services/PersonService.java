@@ -5,12 +5,13 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import org.acme.getting.entities.Person;
+
 import java.net.URI;
 import java.util.List;
 import org.acme.repositories.PersonRepository;
 
 @ApplicationScoped
-public class CRUDService {
+public class PersonService {
 
     @Inject
     PersonRepository personRepository;

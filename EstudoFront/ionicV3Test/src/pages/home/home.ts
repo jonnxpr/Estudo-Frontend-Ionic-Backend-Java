@@ -5,6 +5,7 @@ import { NavController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { HttpServiceProvider } from "../../providers/http-service/http-service";
 import { NgModel } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'page-home',
@@ -12,19 +13,26 @@ import { NgModel } from '@angular/forms';
 })
 export class HomePage extends HttpServiceProvider {
   varCPF: string = "";
+  private todo: FormGroup;
 
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient, private formBuilder: FormBuilder) {
     super(http);
+    this.todo = this.formBuilder.group({
+      nome: [''],
+      cpf: [''],
+      rg: [''],
+      idade: [''],
+    });
     //this.getAll();
-    this.getData();
+    //this.getData();
   }
 
-  mudarPagina() {
+  /*mudarPagina() {
     this.navCtrl.push(TesteDePaginaPage, {
       id: "123",
       name: "Carl"
     });
-  }
+  }*/
 
   getData() {
     let data = this.http.get('http://localhost:8080/persons');
@@ -37,4 +45,21 @@ export class HomePage extends HttpServiceProvider {
         alert("escreve ai!");
       });
   }
+
+  salvar() {
+    const person = this.todo.getRawValue() as Person;
+    let data = this.http.post('http://localhost:8080/persons', person);
+    alert(JSON.stringify(person, null, 4));
+  }
+
+  limparForm() {
+    this.todo.reset();
+  }
+}
+
+class Person {
+  nome: string;
+  cpf: string;
+  rg: string;
+  idade: number;
 }

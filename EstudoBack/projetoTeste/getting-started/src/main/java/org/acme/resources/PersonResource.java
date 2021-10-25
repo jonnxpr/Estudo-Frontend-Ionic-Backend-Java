@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.acme.getting.entities.Person;
-import org.acme.services.CRUDService;
+import org.acme.services.PersonService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 @Path("/persons")
@@ -24,7 +24,7 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 public class PersonResource {
 
     @Inject
-    CRUDService service;
+    PersonService service;
 
     @GET
     public List<Person> list() {
