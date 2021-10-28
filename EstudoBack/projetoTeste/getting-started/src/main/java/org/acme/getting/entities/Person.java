@@ -18,4 +18,5 @@ public class Person extends PanacheEntity {
     private String cpf;
     private String rg;
     private int idade;
+    private String descricao;
 }

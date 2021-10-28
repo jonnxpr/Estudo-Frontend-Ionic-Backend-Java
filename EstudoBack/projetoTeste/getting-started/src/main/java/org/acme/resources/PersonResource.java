@@ -57,6 +57,13 @@ public class PersonResource {
         service.delete(id);
     }
 
+    @DELETE
+    @Path("/delete")
+    @Transactional
+    public void delete() {
+        service.deleteAll();
+    }
+
     @GET
     @Path("/search/{nome}")
     public Person search(@PathParam("nome") String name) {
@@ -68,4 +75,5 @@ public class PersonResource {
     public Long count() {
         return service.count();
     }
+
 }

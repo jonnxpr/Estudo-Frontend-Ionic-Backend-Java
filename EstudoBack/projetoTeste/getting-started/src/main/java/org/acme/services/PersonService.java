@@ -49,6 +49,18 @@ public class PersonService {
         entity.delete();
     }
 
+    public void deleteAll() {
+        List<Person> personList = Person.listAll();
+
+        for (Person p : personList) {
+            Person entity = Person.findById(p.id);
+            if (entity == null) {
+                throw new NotFoundException();
+            }
+            entity.delete();
+        }
+    }
+
     public Person search(String name) {
         return personRepository.findByName(name);
     }

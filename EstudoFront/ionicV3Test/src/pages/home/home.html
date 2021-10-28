@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content padding>
+
   <form [formGroup]="todo" (ngSubmit)="salvar()">
     <ion-item>
       <ion-label fixed>Nome</ion-label>
@@ -28,31 +29,38 @@
       <ion-input type="text" formControlName="idade"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit">Salvar</button>
-    <button ion-button type="button" (click)="limparForm()">Limpar</button>
-  </form>
-</ion-content>
-
-<!--<ion-list inset>
-
-    <ion-list>
-
-      <ion-item>
-        <ion-input type="text" placeholder="CPF" id="qualquerCoisa" ></ion-input>
-      </ion-item>
-
-    </ion-list>
-
-    <div padding>
-      <button ion-button color="primary" (click)="logar()" block>Logar</button>
-    </div>
-
-  </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      Nome: {{item.nome}} <br>
-      CPF: {{item.cpf}} <br>
-      RG: {{item.rg}} <br>
-      Idade: {{item.idade}}
+    <ion-item>
+      <ion-label fixed>Descrição</ion-label>
+      <ion-input type="text" formControlName="descricao"></ion-input>
     </ion-item>
-  </ion-list>-->
+
+    <button ion-button class=".ion-justify-content-center" outline color="primary" class="" type="submit"
+      (click)="presentToast('top')">Salvar</button>
+  </form>
+
+  <button ion-button outline color="secondary" type=" button" (click)="deletar()">Deletar</button>
+  <button ion-button outline color="secondary" type=" button" (click)="deletarTudo()">Deletar tudo</button>
+  <button ion-button outline color="secondary" type="button" (click)="atualizar()">Atualizar</button>
+  <button ion-button outline color="secondary" type="button" (click)="limparForm()">Limpar</button>
+
+  <hr> <!-- separador -->
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list inset>
+    <ion-list-header>
+      Lista de pessoas
+    </ion-list-header>
+    <ion-item *ngFor="let item of items" (click)=listar()>
+      <ion-thumbnail item-middle>
+        <img
+          src="https://toppng.com/uploads/preview/erson-outline-icon-png-person-icon-png-white-11562864385wyirbbsupu.png">
+      </ion-thumbnail>
+      <h2>Nome: {{item.nome}}</h2> <br>
+      <h3>Idade: {{item.idade}}</h3> <br>
+      <h3>CPF: {{item.cpf}}</h3> <br>
+      <h3>RG: {{item.rg}}</h3> <br>
+      <p>Quem sou: {{item.descricao}}</p>
+      <button ion-button clear item-end (click)="verPessoa($event, item)">Visualizar</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
