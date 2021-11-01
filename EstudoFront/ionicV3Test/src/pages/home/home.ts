@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { HttpServiceProvider } from "../../providers/http-service/http-service";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class HomePage extends HttpServiceProvider {
   private todo: FormGroup;
   items: any;
-  itemFilter: string[];
+  person: Person;
 
   constructor(public navCtrl: NavController, public http: HttpClient, private formBuilder: FormBuilder, public toastCtrl: ToastController) {
     super(http);
@@ -25,9 +26,7 @@ export class HomePage extends HttpServiceProvider {
       descricao: [''],
     });
 
-    //this.listar();
-    this.initializeItems();
-
+    this.listar();
   }
 
   private presentToast() {
@@ -64,6 +63,7 @@ export class HomePage extends HttpServiceProvider {
     let response = this.http.delete('http://localhost:8080/persons/delete');
     response.subscribe(result => {
       console.log("Dados excluídos com sucesso!");
+      this.navCtrl.push(HomePage);
     }, reject => {
       console.log("Falha na exclusão dos dados!");
     });
@@ -96,29 +96,11 @@ export class HomePage extends HttpServiceProvider {
     }, 2000);
   }
 
-  initializeItems() {
-    let data = this.http.get('http://localhost:8080/persons');
-    data.subscribe(result => {
-      this.items = result;
-      this.itemFilter = new Array();
-      this.items.forEach(element => {
-        this.itemFilter.push(element["nome"]);
-      });
-    });
-  }
-
-  getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeItems();
-    // set val to the value of the ev target
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.itemFilter = this.itemFilter.filter((item: any) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
+  portChange(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('port:', event.value);
   }
 }
 

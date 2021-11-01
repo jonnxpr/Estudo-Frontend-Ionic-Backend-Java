@@ -34,33 +34,23 @@
       <ion-input type="text" formControlName="descricao"></ion-input>
     </ion-item>
 
-    <button ion-button class=".ion-justify-content-center" outline color="primary" class="" type="submit"
+    <button ion-button class=".ion-justify-content-center" color="sucess" class="" type="submit"
       (click)="presentToast('top')">Salvar</button>
+    <button ion-button color="secondary" type="button" (click)="atualizar()">Atualizar</button>
+    <button ion-button color="dark" type="button" (click)="limparForm()">Limpar</button>
   </form>
 
-  <button ion-button outline color="secondary" type=" button" (click)="deletar()">Deletar</button>
-  <button ion-button outline color="secondary" type=" button" (click)="deletarTudo()">Deletar tudo</button>
-  <button ion-button outline color="secondary" type="button" (click)="atualizar()">Atualizar</button>
-  <button ion-button outline color="secondary" type="button" (click)="limparForm()">Limpar</button>
+  <button ion-button color="danger" type=" button" (click)="deletar()">Deletar</button>
+  <button ion-button color="danger" type=" button" (click)="deletarTudo()">Deletar tudo</button>
+
+
 
   <hr> <!-- separador -->
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list inset>
-    <ion-list-header>
-      Lista de pessoas
-    </ion-list-header>
-    <ion-item *ngFor="let item of items" (click)=listar()>
-      <ion-thumbnail item-middle>
-        <img
-          src="https://toppng.com/uploads/preview/erson-outline-icon-png-person-icon-png-white-11562864385wyirbbsupu.png">
-      </ion-thumbnail>
-      <h2>Nome: {{item.nome}}</h2> <br>
-      <h3>Idade: {{item.idade}}</h3> <br>
-      <h3>CPF: {{item.cpf}}</h3> <br>
-      <h3>RG: {{item.rg}}</h3> <br>
-      <p>Quem sou: {{item.descricao}}</p>
-      <button ion-button clear item-end (click)="verPessoa($event, item)">Visualizar</button>
-    </ion-item>
-  </ion-list>
-
+  <ion-item>
+    <ion-label>Persons</ion-label>
+    <ionic-selectable item-content [(ngModel)]="person" [items]="items" itemTextField="descricao" itemTextField="cpf"
+      itemTextField="rg" itemValueField="idade" itemTextField="nome" [canSearch]="true" (onChange)="portChange($event)"
+      (onClick)="listar()">
+    </ionic-selectable>
+  </ion-item>
 </ion-content>

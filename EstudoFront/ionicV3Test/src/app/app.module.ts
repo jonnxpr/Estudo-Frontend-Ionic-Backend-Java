@@ -1,3 +1,4 @@
+import { ListPage } from './../pages/list/list';
 import { ViewPersonPage } from './../pages/view-person/view-person';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -9,23 +10,27 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HttpClientModule } from "@angular/common/http";
 import { HttpServiceProvider } from '../providers/http-service/http-service';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ViewPersonPage,
+    ListPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicSelectableModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ViewPersonPage,
+    ListPage,
   ],
   providers: [
     StatusBar,

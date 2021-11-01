@@ -23,10 +23,10 @@ export class MyApp {
 
 //entidades globais
 export class Person {
-  nome: string;
-  cpf: string;
-  rg: string;
-  idade: number;
-  descricao: string;
+  public nome: string;
+  public cpf: string;
+  public rg: string;
+  public idade: number;
+  public descricao: string;
 }
 
