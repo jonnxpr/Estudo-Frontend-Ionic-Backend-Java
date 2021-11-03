@@ -2,7 +2,7 @@ import { Person } from './../../app/app.component';
 import { ViewPersonPage } from './../view-person/view-person';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { App, MenuController, NavController, ToastController } from 'ionic-angular';
 import { HttpServiceProvider } from "../../providers/http-service/http-service";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicSelectableComponent } from 'ionic-selectable';
@@ -18,8 +18,9 @@ export class HomePage extends HttpServiceProvider {
   delete_update_Person: any;
   nomeTeste: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, private formBuilder: FormBuilder, public toastCtrl: ToastController) {
+  constructor(app: App, menu: MenuController, public navCtrl: NavController, public http: HttpClient, private formBuilder: FormBuilder, public toastCtrl: ToastController) {
     super(http);
+    menu.enable(true);
     this.todo = this.formBuilder.group({
       nome: [''],
       cpf: [''],

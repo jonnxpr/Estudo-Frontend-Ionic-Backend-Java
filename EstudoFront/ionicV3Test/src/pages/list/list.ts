@@ -30,9 +30,4 @@ export class ListPage {
         console.log("Falha na obtenção dos dados!");
       });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListPage');
-  }
-
 }
