@@ -15,6 +15,8 @@ export class HomePage extends HttpServiceProvider {
   private todo: FormGroup;
   items: any;
   person: Person;
+  delete_update_Person: any;
+  nomeTeste: any;
 
   constructor(public navCtrl: NavController, public http: HttpClient, private formBuilder: FormBuilder, public toastCtrl: ToastController) {
     super(http);
@@ -79,12 +81,35 @@ export class HomePage extends HttpServiceProvider {
     });
   }
 
-  atualizar() {
+  carregarDados() {
+    this.todo.get("nome").setValue(this.delete_update_Person["nome"]);
+    this.todo.get("idade").setValue(this.delete_update_Person["idade"]);
+    this.todo.get("cpf").setValue(this.delete_update_Person["cpf"]);
+    this.todo.get("rg").setValue(this.delete_update_Person["rg"]);
+    this.todo.get("descricao").setValue(this.delete_update_Person["descricao"]);
+  }
 
+  atualizar() {
+    const person = this.todo.getRawValue() as Person;
+    let data = this.http.put('http://localhost:8080/persons/' + this.delete_update_Person['id'], person);
+    data.subscribe(result => {
+      console.log("Atualização realizada com sucesso!");
+    },
+      reject => {
+        console.log("Erro na atualização!");
+      });
   }
 
   deletar() {
+    console.log('http://localhost:8080/persons/' + this.delete_update_Person["id"]);
+    let response = this.http.delete('http://localhost:8080/persons/' + this.delete_update_Person["id"]);
 
+    response.subscribe(result => {
+      console.log("Dados excluídos com sucesso!");
+      this.navCtrl.push(HomePage);
+    }, reject => {
+      console.log("Falha na exclusão dos dados!");
+    });
   }
 
   doRefresh(event) {
@@ -101,6 +126,8 @@ export class HomePage extends HttpServiceProvider {
     value: any
   }) {
     console.log('port:', event.value);
+    this.delete_update_Person = event.value;
+    this.carregarDados();
   }
 }
 

@@ -37,7 +37,10 @@ public class PersonService {
 
         // map all fields from the person parameter to the existing entity
         entity.setNome(person.getNome());
-
+        entity.setIdade(person.getIdade());
+        entity.setCpf(person.getCpf());
+        entity.setRg(person.getRg());
+        entity.setDescricao(person.getDescricao());
         return entity;
     }
 

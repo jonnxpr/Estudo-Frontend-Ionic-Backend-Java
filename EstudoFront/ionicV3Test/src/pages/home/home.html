@@ -11,7 +11,7 @@
   <form [formGroup]="todo" (ngSubmit)="salvar()">
     <ion-item>
       <ion-label fixed>Nome</ion-label>
-      <ion-input type="text" formControlName="nome"></ion-input>
+      <ion-input type="text" [(ngModel)]="nomeTeste" formControlName="nome"></ion-input>
     </ion-item>
 
     <ion-item>
