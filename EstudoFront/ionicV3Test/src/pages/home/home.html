@@ -1,26 +1,38 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      CRUD - Página Inicial
-    </ion-title>
+    <ion-title> CRUD - Página Inicial </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item>
     <ion-label>Persons</ion-label>
-    <ionic-selectable item-content [(ngModel)]="person" [items]="items" itemTextField="descricao" itemTextField="cpf"
-      itemTextField="rg" itemValueField="idade" itemTextField="nome" [canSearch]="true" (onChange)="portChange($event);"
-      (focus)="listar()">
+    <ionic-selectable
+      item-content
+      [(ngModel)]="person"
+      [items]="items"
+      itemTextField="descricao"
+      itemTextField="cpf"
+      itemTextField="rg"
+      itemValueField="idade"
+      itemTextField="nome"
+      [canSearch]="true"
+      (onChange)="portChange($event);"
+      (focus)="listar()"
+    >
     </ionic-selectable>
   </ion-item>
 
-  <hr> <!-- separador -->
+  <hr />
 
   <form [formGroup]="todo" (ngSubmit)="salvar()">
     <ion-item>
       <ion-label fixed>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="nomeTeste" formControlName="nome"></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="nomeTeste"
+        formControlName="nome"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
@@ -42,14 +54,33 @@
       <ion-label fixed>Descrição</ion-label>
       <ion-input type="text" formControlName="descricao"></ion-input>
     </ion-item>
-    <br>
-    <button ion-button class=".ion-justify-content-center" color="sucess" class="" type="submit"
-      (click)="presentToast('top')">Salvar</button>
-    <button ion-button color="secondary" type="button" (click)="atualizar()">Atualizar</button>
-    <button ion-button color="dark" type="button" (click)="limparForm()">Limpar</button>
+    <br />
+    <button
+      ion-button
+      class=".ion-justify-content-center"
+      color="sucess"
+      class=""
+      type="submit"
+      (click)="presentToast('top')"
+    >
+      Salvar
+    </button>
+    <button ion-button color="secondary" type="button" (click)="atualizar()">
+      Atualizar
+    </button>
+    <button ion-button color="dark" type="button" (click)="limparForm()">
+      Limpar
+    </button>
   </form>
 
-  <button ion-button color="danger" type=" button" (click)="deletar()">Deletar</button>
-  <button ion-button color="danger" type=" button" (click)="deletarTudo()">Deletar tudo</button>
+  <button ion-button color="danger" type=" button" (click)="deletar()">
+    Deletar
+  </button>
+  <button ion-button color="danger" type=" button" (click)="deletarTudo()">
+    Deletar tudo
+  </button>
 
+  <button ion-button type=" button" (click)="mostrarPaginaListagem()">
+    Listar pessoas
+  </button>
 </ion-content>

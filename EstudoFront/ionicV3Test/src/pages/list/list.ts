@@ -1,13 +1,7 @@
+import { ViewPersonPage } from './../view-person/view-person';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,13 +15,20 @@ export class ListPage {
     this.listar();
   }
 
-  private listar() {
+  public listar() {
     let data = this.http.get('http://localhost:8080/persons');
     data.subscribe(result => {
       this.items = result;
+      console.log(this.items);
     },
       reject => {
         console.log("Falha na obtenção dos dados!");
       });
+  }
+
+  public verPessoa(event, item) {
+    this.navCtrl.push(ViewPersonPage, {
+      item: item
+    });
   }
 }
